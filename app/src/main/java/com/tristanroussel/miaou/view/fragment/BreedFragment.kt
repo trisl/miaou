@@ -12,8 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.tristanroussel.miaou.R
 import com.tristanroussel.miaou.model.Breed
+import com.tristanroussel.miaou.model.BreedImage
 import com.tristanroussel.miaou.utils.changeVisibility
 import com.tristanroussel.miaou.view.adapter.BreedAdapter
 import com.tristanroussel.miaou.viewModel.BreedViewModel
@@ -25,6 +29,7 @@ class BreedFragment : Fragment() {
 
     private lateinit var backButton: ImageView
     private lateinit var breedNameTextView: TextView
+    private lateinit var breedImage: ImageView
 
     var breed: Breed? = null
     private val breedViewModel by lazy { initViewModel() }
@@ -33,6 +38,7 @@ class BreedFragment : Fragment() {
             inflater.inflate(R.layout.fragment_breed, container, false).apply {
                 backButton = breed_back
                 breedNameTextView = breed_name
+                breedImage = breed_image
             }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,8 +54,8 @@ class BreedFragment : Fragment() {
 
     private fun bindViewModel() {
         breedViewModel?.let {
-            it.images.observe(this, Observer { breeds ->
-                if (breeds.isNotEmpty()) configImages(breeds)
+            it.images.observe(this, Observer { images ->
+                if (images.isNotEmpty()) configImages(images)
             })
         }
     }
@@ -64,7 +70,14 @@ class BreedFragment : Fragment() {
         backButton.setOnClickListener { activity?.onBackPressed() }
     }
 
-    private fun configImages(images: List<Breed>) {
+    private fun configImages(images: List<BreedImage>) {
+        images.first().url?.let {
+            Glide.with(this)
+                    .load(it)
+                    .apply(RequestOptions().placeholder(R.drawable.placeholder))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(breedImage)
+        }
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package com.tristanroussel.miaou.service
 
 import com.tristanroussel.miaou.model.Breed
+import com.tristanroussel.miaou.model.BreedImage
 import com.tristanroussel.miaou.utils.Routes
 import retrofit2.Call
 import retrofit2.http.GET
@@ -20,7 +21,7 @@ object CatService {
         fun getBreedImages(
                 @Query("breed_id") breedId: String,
                 @Query("limit") limit: Int
-        ): Call<List<Breed>>
+        ): Call<List<BreedImage>>
     }
 
     fun getBreeds(page: Int, callback: ((body: Any?, success: Boolean) -> Unit)) {
