@@ -8,7 +8,7 @@ import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.view.adapter.viewHolder.BreedViewHolder
 import com.tristanroussel.miaou.view.adapter.viewHolder.HeaderViewHolder
 
-class BreedAdapter(private val data: List<Any>)
+class BreedAdapter(private val data: ArrayList<Any>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private enum class ViewType {
@@ -50,4 +50,10 @@ class BreedAdapter(private val data: List<Any>)
                 is Breed -> ViewType.BREED_VIEW_TYPE.ordinal
                 else -> ViewType.HEADER_VIEW_TYPE.ordinal
             }
+
+    fun addData(data: ArrayList<Any>) {
+        val initialSize = itemCount
+        this.data.addAll(data)
+        notifyItemRangeInserted(initialSize, data.size)
+    }
 }

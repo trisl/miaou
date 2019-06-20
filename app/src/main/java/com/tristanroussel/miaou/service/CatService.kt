@@ -17,9 +17,9 @@ object CatService {
         ): Call<List<Breed>>
     }
 
-    fun getBreeds(callback: ((body: Any?, success: Boolean) -> Unit)) {
+    fun getBreeds(page: Int, callback: ((body: Any?, success: Boolean) -> Unit)) {
         Service.createService(CatClient::class.java)?.let {
-            Service.enqueue(it.getBreeds(0, 10), callback)
+            Service.enqueue(it.getBreeds(page, 15), callback)
         }
     }
 }

@@ -30,11 +30,9 @@ class HomeFragment : Fragment() {
                 breedsCollection = breeds_collection
             }
 
-    override fun onStart() {
-        super.onStart()
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bindViewModel()
-        configBreeds(ArrayList())
+        initBreedsCollection()
         homeViewModel?.getBreeds()
     }
 
@@ -52,16 +50,31 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun initBreedsCollection() {
+        breedsCollection.adapter = BreedAdapter(ArrayList<Any>().apply { add("header") })
+        breedsCollection.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        breedsCollection.addOnScrollListener(InfiniteScrollListener())
+    }
+
     private fun displayLoader(loading: Boolean) {
         loader.visibility = loading.changeVisibility()
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun configBreeds(breeds: List<Breed>) {
-        val data = ArrayList<Any>().apply {
-            add("header")
-            addAll(breeds)
+        (breedsCollection.adapter as? BreedAdapter)?.addData(breeds as ArrayList<Any>)
+    }
+
+    private inner class InfiniteScrollListener : RecyclerView.OnScrollListener() {
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            val breedChild = recyclerView.getChildAt(recyclerView.childCount - 1)
+            val isChildVisible = recyclerView.layoutManager
+                    ?.isViewPartiallyVisible(breedChild, true, false)
+                    ?: false
+            if (isChildVisible) {
+                homeViewModel?.getBreeds()
+            }
         }
-        breedsCollection.adapter = BreedAdapter(data)
-        breedsCollection.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 }

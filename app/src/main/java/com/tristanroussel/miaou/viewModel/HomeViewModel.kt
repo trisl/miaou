@@ -12,12 +12,23 @@ class HomeViewModel : ViewModel() {
     val isLoading = MutableLiveData<Boolean>().init(true)
     val breeds = MutableLiveData<List<Breed>>().init(ArrayList())
 
+    private var page: Int = 0
+    private var breedsFullLoaded: Boolean = false
+
     fun getBreeds() {
-        isLoading.postValue(true)
-        CatService.getBreeds { body, success ->
-            isLoading.postValue(false)
-            if (success && body is List<*>) {
-                body.asListOfType<Breed>()?.let { breeds.postValue(it) }
+        if (!breedsFullLoaded) {
+            isLoading.postValue(true)
+            CatService.getBreeds(page) { body, success ->
+                isLoading.postValue(false)
+                if (success && body is List<*>) {
+                    when {
+                        body.isEmpty() -> breedsFullLoaded = true
+                        else -> {
+                            body.asListOfType<Breed>()?.let { breeds.postValue(it) }
+                            page += 1
+                        }
+                    }
+                }
             }
         }
     }
