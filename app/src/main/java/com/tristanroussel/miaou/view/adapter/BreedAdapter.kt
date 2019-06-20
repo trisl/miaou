@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tristanroussel.miaou.R
+import com.tristanroussel.miaou.listener.OnBreedClickListener
 import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.view.adapter.viewHolder.BreedViewHolder
 import com.tristanroussel.miaou.view.adapter.viewHolder.HeaderViewHolder
 
-class BreedAdapter(private val data: ArrayList<Any>)
+class BreedAdapter(private val data: ArrayList<Any>,
+                   private val onBreedClickListener: OnBreedClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private enum class ViewType {
@@ -37,7 +39,7 @@ class BreedAdapter(private val data: ArrayList<Any>)
             }
             ViewType.BREED_VIEW_TYPE.ordinal -> {
                 if (datum is Breed && holder is BreedViewHolder) {
-                    holder.configBreed(datum)
+                    holder.configBreed(datum, onBreedClickListener)
                 }
             }
         }

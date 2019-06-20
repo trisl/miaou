@@ -12,4 +12,7 @@
 
   <dimen name="card_radius">4dp</dimen>
   <dimen name="card_elevation">2dp</dimen>
+
+  <dimen name="icon_touch_size">56dp</dimen>
+  <dimen name="icon_safe_padding">12dp</dimen>
 </resources>

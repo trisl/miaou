@@ -4,21 +4,15 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content">
+  android:layout_height="match_parent"
+  android:background="@android:color/white">
 
   <androidx.cardview.widget.CardView
-    android:id="@+id/breed_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_height"
-    android:layout_margin="@dimen/small_margin"
-    android:clickable="true"
-    android:colorControlHighlight="?attr/colorOnSurface"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="?attr/colorSurface"
-    app:cardCornerRadius="@dimen/card_radius"
+    app:cardCornerRadius="0dp"
     app:cardElevation="@dimen/card_elevation"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -27,17 +21,34 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
+      <ImageView
+        android:id="@+id/breed_back"
+        android:layout_width="@dimen/icon_touch_size"
+        android:layout_height="@dimen/icon_touch_size"
+        android:padding="@dimen/icon_safe_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:colorControlHighlight="?attr/colorOnSurface"
+        android:focusable="true"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
       <TextView
         android:id="@+id/breed_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normal_margin"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:textColor="?attr/colorOnSurface"
-        android:textSize="@dimen/body1"
+        android:textSize="@dimen/h6"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/breed_back"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Bengal"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

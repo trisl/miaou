@@ -15,11 +15,23 @@ object CatService {
                 @Query("page") page: Int,
                 @Query("limit") limit: Int
         ): Call<List<Breed>>
+
+        @GET(Routes.breedImages)
+        fun getBreedImages(
+                @Query("breed_id") breedId: String,
+                @Query("limit") limit: Int
+        ): Call<List<Breed>>
     }
 
     fun getBreeds(page: Int, callback: ((body: Any?, success: Boolean) -> Unit)) {
         Service.createService(CatClient::class.java)?.let {
             Service.enqueue(it.getBreeds(page, 15), callback)
+        }
+    }
+
+    fun getBreedImages(breedId: String, callback: ((body: Any?, success: Boolean) -> Unit)) {
+        Service.createService(CatClient::class.java)?.let {
+            Service.enqueue(it.getBreedImages(breedId, 5), callback)
         }
     }
 }
