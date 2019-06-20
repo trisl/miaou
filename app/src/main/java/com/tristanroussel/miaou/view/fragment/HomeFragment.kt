@@ -5,27 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tristanroussel.miaou.R
 import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.utils.changeVisibility
+import com.tristanroussel.miaou.view.adapter.BreedAdapter
 import com.tristanroussel.miaou.viewModel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var loader: ProgressBar
-    private lateinit var responseTextView: TextView
+    private lateinit var breedsCollection: RecyclerView
 
     private val homeViewModel by lazy { initViewModel() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_home, container, false).apply {
                 loader = breeds_loader
-                responseTextView = response_json
+                breedsCollection = breeds_collection
             }
 
     override fun onStart() {
@@ -51,10 +53,10 @@ class HomeFragment : Fragment() {
 
     private fun displayLoader(loading: Boolean) {
         loader.visibility = loading.changeVisibility()
-        responseTextView.visibility = loading.changeVisibility(invert = true)
     }
 
     private fun configBreeds(breeds: List<Breed>) {
-        responseTextView.text = breeds.map { it.name }.toString()
+        breedsCollection.adapter = BreedAdapter(breeds)
+        breedsCollection.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 }

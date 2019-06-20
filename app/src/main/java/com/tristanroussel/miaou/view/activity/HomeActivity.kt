@@ -1,14 +1,9 @@
 package com.tristanroussel.miaou.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.tristanroussel.miaou.R
-import com.tristanroussel.miaou.model.Breed
-import com.tristanroussel.miaou.service.CatService
-import com.tristanroussel.miaou.utils.asListOfType
 import com.tristanroussel.miaou.view.fragment.HomeFragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
 
