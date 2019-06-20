@@ -5,40 +5,12 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <TextView
-    android:id="@+id/breeds_title"
-    android:textStyle="bold"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/big_margin"
-    android:layout_marginStart="@dimen/normal_margin"
-    android:layout_marginEnd="@dimen/normal_margin"
-    android:text="@string/discover_cat_breeds"
-    android:textColor="?attr/colorOnBackground"
-    android:textSize="@dimen/h6"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
-
-  <TextView
-    android:id="@+id/breeds_sub_title"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/normal_margin"
-    android:layout_marginEnd="@dimen/normal_margin"
-    android:text="@string/miaou"
-    android:textColor="?attr/colorOnBackground"
-    android:textSize="@dimen/subtitle2"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/breeds_title"/>
-
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/breeds_collection"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/big_margin"
-    app:layout_constraintTop_toBottomOf="@id/breeds_sub_title"/>
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <ProgressBar
     android:id="@+id/breeds_loader"

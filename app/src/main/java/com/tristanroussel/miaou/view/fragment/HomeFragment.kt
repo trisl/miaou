@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
         super.onStart()
 
         bindViewModel()
+        configBreeds(ArrayList())
         homeViewModel?.getBreeds()
     }
 
@@ -56,7 +57,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun configBreeds(breeds: List<Breed>) {
-        breedsCollection.adapter = BreedAdapter(breeds)
+        val data = ArrayList<Any>().apply {
+            add("header")
+            addAll(breeds)
+        }
+        breedsCollection.adapter = BreedAdapter(data)
         breedsCollection.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 }

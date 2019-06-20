@@ -19,7 +19,7 @@ object CatService {
 
     fun getBreeds(callback: ((body: Any?, success: Boolean) -> Unit)) {
         Service.createService(CatClient::class.java)?.let {
-            Service.enqueue(it.getBreeds(0, 5), callback)
+            Service.enqueue(it.getBreeds(0, 10), callback)
         }
     }
 }
