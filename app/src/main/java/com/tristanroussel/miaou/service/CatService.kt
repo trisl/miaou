@@ -1,6 +1,6 @@
 package com.tristanroussel.miaou.service
 
-import com.google.gson.JsonArray
+import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.utils.Routes
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ object CatService {
         fun getBreeds(
                 @Query("page") page: Int,
                 @Query("limit") limit: Int
-        ): Call<JsonArray>
+        ): Call<List<Breed>>
     }
 
     fun getBreeds(callback: ((body: Any?, success: Boolean) -> Unit)) {
