@@ -20,7 +20,8 @@ object CatService {
         @GET(Routes.breedImages)
         fun getBreedImages(
                 @Query("breed_id") breedId: String,
-                @Query("limit") limit: Int
+                @Query("limit") limit: Int,
+                @Query("size") size: String
         ): Call<List<BreedImage>>
     }
 
@@ -32,7 +33,7 @@ object CatService {
 
     fun getBreedImages(breedId: String, callback: ((body: Any?, success: Boolean) -> Unit)) {
         Service.createService(CatClient::class.java)?.let {
-            Service.enqueue(it.getBreedImages(breedId, 5), callback)
+            Service.enqueue(it.getBreedImages(breedId, 5, "small"), callback)
         }
     }
 }

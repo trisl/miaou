@@ -12,14 +12,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.tabs.TabLayout
 import com.tristanroussel.miaou.R
 import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.model.BreedImage
 import com.tristanroussel.miaou.utils.changeVisibility
 import com.tristanroussel.miaou.view.adapter.BreedAdapter
+import com.tristanroussel.miaou.view.adapter.ImageAdapter
 import com.tristanroussel.miaou.viewModel.BreedViewModel
 import com.tristanroussel.miaou.viewModel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_breed.view.*
@@ -29,7 +32,8 @@ class BreedFragment : Fragment() {
 
     private lateinit var backButton: ImageView
     private lateinit var breedNameTextView: TextView
-    private lateinit var breedImage: ImageView
+    private lateinit var breedImagesLayout: ViewPager
+    private lateinit var breedImagesDotIndicator: TabLayout
 
     var breed: Breed? = null
     private val breedViewModel by lazy { initViewModel() }
@@ -38,7 +42,8 @@ class BreedFragment : Fragment() {
             inflater.inflate(R.layout.fragment_breed, container, false).apply {
                 backButton = breed_back
                 breedNameTextView = breed_name
-                breedImage = breed_image
+                breedImagesLayout = breed_images_layout
+                breedImagesDotIndicator = breed_images_dot_indicator
             }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,12 +76,9 @@ class BreedFragment : Fragment() {
     }
 
     private fun configImages(images: List<BreedImage>) {
-        images.first().url?.let {
-            Glide.with(this)
-                    .load(it)
-                    .apply(RequestOptions().placeholder(R.drawable.placeholder))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(breedImage)
+        context?.let { context ->
+            breedImagesLayout.adapter = ImageAdapter(context, images.mapNotNull { it.url })
+            breedImagesDotIndicator.setupWithViewPager(breedImagesLayout)
         }
     }
 
