@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="small_margin">8dp</dimen>
+  <dimen name="normal_margin">16dp</dimen>
+  <dimen name="big_margin">24dp</dimen>
+
+  <dimen name="h6">20sp</dimen>
+  <dimen name="subtitle2">14sp</dimen>
+  <dimen name="body1">16sp</dimen>
+  <dimen name="body2">14sp</dimen>
+
+  <dimen name="item_height">56dp</dimen>
+
+  <dimen name="card_radius">4dp</dimen>
+  <dimen name="card_elevation">2dp</dimen>
+
+  <dimen name="icon_touch_size">56dp</dimen>
+  <dimen name="icon_safe_padding">12dp</dimen>
+</resources>

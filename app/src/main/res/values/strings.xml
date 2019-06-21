@@ -1,3 +1,9 @@
 <resources>
+    <string name="cat_api_url">https://api.thecatapi.com</string>
+    <string name="cat_api_key">2dfd1909-0732-4e01-add9-3fa4317f2cee</string>
+
     <string name="app_name">Miaou</string>
+
+    <string name="discover_cat_breeds">Discover cat breeds</string>
+    <string name="miaou">(Miaou miaou miaou)</string>
 </resources>

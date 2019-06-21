@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white">
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/top_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_height"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="@dimen/card_elevation"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <ImageView
+        android:id="@+id/breed_back"
+        android:layout_width="@dimen/icon_touch_size"
+        android:layout_height="@dimen/icon_touch_size"
+        android:padding="@dimen/icon_safe_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:colorControlHighlight="?attr/colorOnSurface"
+        android:focusable="true"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+      <TextView
+        android:id="@+id/breed_name"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="@dimen/h6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/breed_back"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Bengal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.cardview.widget.CardView>
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/top_bar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <androidx.viewpager.widget.ViewPager
+        android:id="@+id/breed_images_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="4:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:alpha="0.2"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/breed_images_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+      <com.google.android.material.tabs.TabLayout
+        android:id="@+id/breed_images_dot_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@id/breed_images_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabBackground="@drawable/dot_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"/>
+
+      <TextView
+        android:id="@+id/breed_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="@dimen/body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/breed_images_layout"
+        tools:text="Bengals are a lot of fun to live with, but they're definitely not
+the cat for everyone, or for first-time cat owners. Extremely intelligent,
+curious and active, they demand a lot of interaction and woe betide the owner who
+doesn't provide it."/>
+
+      <TextView
+        android:id="@+id/breed_temperament"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:textSize="@dimen/body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/breed_description"
+        tools:text="Alert, Agile, Energetic, Demanding, Intelligent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
