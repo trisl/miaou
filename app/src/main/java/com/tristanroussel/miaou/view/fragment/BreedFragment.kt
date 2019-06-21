@@ -34,6 +34,8 @@ class BreedFragment : Fragment() {
     private lateinit var breedNameTextView: TextView
     private lateinit var breedImagesLayout: ViewPager
     private lateinit var breedImagesDotIndicator: TabLayout
+    private lateinit var breedDescriptionTextView: TextView
+    private lateinit var breedTemperamentTextView: TextView
 
     var breed: Breed? = null
     private val breedViewModel by lazy { initViewModel() }
@@ -44,6 +46,8 @@ class BreedFragment : Fragment() {
                 breedNameTextView = breed_name
                 breedImagesLayout = breed_images_layout
                 breedImagesDotIndicator = breed_images_dot_indicator
+                breedDescriptionTextView = breed_description
+                breedTemperamentTextView = breed_temperament
             }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +71,9 @@ class BreedFragment : Fragment() {
 
     private fun configView() {
         breed?.let {
-            breedNameTextView.text = it.name
+            breedNameTextView.text = it.name ?: ""
+            breedDescriptionTextView.text = it.description ?: ""
+            breedTemperamentTextView.text = it.temperament ?: ""
         }
     }
 
