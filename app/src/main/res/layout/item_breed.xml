@@ -7,6 +7,7 @@
   android:layout_height="wrap_content">
 
   <androidx.cardview.widget.CardView
+    android:id="@+id/breed_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_height"
     android:layout_margin="@dimen/small_margin"

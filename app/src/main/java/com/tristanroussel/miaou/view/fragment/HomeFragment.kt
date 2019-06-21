@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tristanroussel.miaou.R
+import com.tristanroussel.miaou.listener.OnBreedClickListener
 import com.tristanroussel.miaou.model.Breed
 import com.tristanroussel.miaou.utils.changeVisibility
 import com.tristanroussel.miaou.view.adapter.BreedAdapter
@@ -51,7 +52,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initBreedsCollection() {
-        breedsCollection.adapter = BreedAdapter(ArrayList<Any>().apply { add("header") })
+        val onBreedClickListener = activity as? OnBreedClickListener
+        breedsCollection.adapter = BreedAdapter(ArrayList<Any>().apply { add("header") }, onBreedClickListener)
         breedsCollection.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         breedsCollection.addOnScrollListener(InfiniteScrollListener())
     }
@@ -72,7 +74,7 @@ class HomeFragment : Fragment() {
             val isChildVisible = recyclerView.layoutManager
                     ?.isViewPartiallyVisible(breedChild, true, false)
                     ?: false
-            if (isChildVisible) {
+            if (isChildVisible && homeViewModel?.isLoading() == false) {
                 homeViewModel?.getBreeds()
             }
         }
