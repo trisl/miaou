@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
             val isChildVisible = recyclerView.layoutManager
                     ?.isViewPartiallyVisible(breedChild, true, false)
                     ?: false
-            if (isChildVisible) {
+            if (isChildVisible && homeViewModel?.isLoading() == false) {
                 homeViewModel?.getBreeds()
             }
         }

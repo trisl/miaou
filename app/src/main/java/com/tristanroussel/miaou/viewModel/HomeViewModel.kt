@@ -32,4 +32,6 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+
+    fun isLoading(): Boolean = isLoading.value ?: false
 }

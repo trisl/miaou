@@ -1,6 +1,8 @@
 package com.tristanroussel.miaou.view.fragment
 
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,6 +92,10 @@ class BreedFragment : Fragment() {
 
     companion object {
 
-        fun instance(breed: Breed): BreedFragment = BreedFragment().apply { this.breed = breed }
+        fun instance(breed: Breed): BreedFragment = BreedFragment().apply {
+            this.breed = breed
+            enterTransition = Slide(Gravity.RIGHT)
+            exitTransition = Slide(Gravity.RIGHT)
+        }
     }
 }
